@@ -22,7 +22,6 @@
         <input type="radio" id="exerciseTimer" name="timerSelect" value="exerciseTimer" checked />
     </div>
 
-
     <form id="regularTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
         <p>Hours</p>
         <input inputmode="numeric" pattern="[0-9]*" id="regularInputH" class="border border-[#233827] rounded-md bg-[#2ECC71] w-[10vw]">
@@ -44,18 +43,30 @@
     </form>
 
     <form id="exerciseTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
-        <p>Exercising minutes</p>
-        <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingM"
-        class="border border-[#233827] rounded-md bg-[#2ECC71] w-[10vw]">
-        <p>Exercising seconds</p>
-        <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingS"
-        class="border border-[#233827] rounded-md bg-[#2ECC71] w-[10vw]">
-        <p>Separation minutes</p>
-        <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationM"
-        class="border border-[#233827] rounded-md bg-[#2ECC71] w-[10vw]">
-        <p>Separation seconds</p>
-        <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationS"
-        class="border border-[#233827] rounded-md bg-[#2ECC71] w-[10vw]">
+        <p>Exercising time</p>
+        <div class="flex">
+            <div>
+                <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingM"
+                class="border border-[#233827] rounded-md bg-[#2ECC71] w-[2vw]">
+            </div>
+            <p>:</p>
+            <div>
+                <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingS"
+                class="border border-[#233827] rounded-md bg-[#2ECC71] w-[2vw]">
+            </div>
+        </div>
+        <p>Separation time</p>
+        <div class="flex">
+            <div>
+                <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationM"
+                class="border border-[#233827] rounded-md bg-[#2ECC71] w-[2vw]">
+            </div>
+            <p>:</p>
+            <div>
+                <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationS"
+                class="border border-[#233827] rounded-md bg-[#2ECC71] w-[2vw]">
+            </div>
+        </div>
         <p>Loop?</p>
         <input class="cursor-pointer" id="exerciseLoop" type="checkbox" checked>
         <div>

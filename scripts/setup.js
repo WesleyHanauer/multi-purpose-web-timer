@@ -11,6 +11,19 @@ window.addEventListener('load', () => {
     regularTimerForm.reset();
     exerciseTimerForm.reset();
     regularTimerForm.style.display = "none";
+    /*
+    const tooltip = document.getElementById("tooltip");
+    const tooltiptext = document.getElementById("tooltiptext");
+
+    tooltip.addEventListener("mouseover", function(){
+        tooltiptext.removeAttribute("style");
+    })
+    tooltip.addEventListener("mouseout", function(){
+        tooltiptext.style.display = "none";
+    })
+
+    <p id="tooltip">?</p>
+    <p id="tooltiptext" style="display: none;">tooltip test/p></p>*/
 });
 
 const radioButtons = document.querySelectorAll("input[name=timerSelect]");
