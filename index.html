@@ -44,7 +44,17 @@
     </form>
 
     <form id="exerciseTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
-        <p>Exercising time</p>
+        <div class="flex justify-between items-center w-full">
+            <div class="flex-1">
+            </div>
+            <div class="flex-1 text-center">
+                <span>Exercising time</span>
+                <span class="tooltip">ℹ️</span>
+            </div>
+            <div class="flex-1 text-justify">
+                <span class="tooltiptext absolute right-[20vw] w-[20vw]" style="display: none;">This is the amount of time you exercise for. (Recomended 2-5 minutes)</span>
+            </div>
+        </div>
         <div class="flex">
                 <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingM"
                 class="border border-[#233827] rounded-md bg-[#2ECC71] w-[2vw]">
@@ -52,7 +62,17 @@
                 <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingS"
                 class="border border-[#233827] rounded-md bg-[#2ECC71] w-[2vw]">
         </div>
-        <p>Separation time</p>
+        <div class="flex justify-between items-center w-full">
+            <div class="flex-1">
+            </div>
+            <div class="flex-1 text-center">
+                <span>Resting time</span>
+                <span class="tooltip">ℹ️</span>
+            </div>
+            <div class="flex-1 text-justify">
+                <span class="tooltiptext absolute right-[20vw] w-[20vw]" style="display: none;">This is the amount of time between each set of exercises. (Recommended 30-45 minutes)</span>
+            </div>
+        </div>
         <div class="flex">
                 <input inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationM"
                 class="border border-[#233827] rounded-md bg-[#2ECC71] w-[2vw]">
