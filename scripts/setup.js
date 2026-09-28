@@ -3,7 +3,8 @@ const exerciseTimerForm = document.getElementById("exerciseTimerForm");
 const mission = document.getElementById("mission");
 const exerciseLabel = document.getElementById("exerciseLabel");
 const regularLabel = document.getElementById("regularLabel");
-
+const hamburguerButton = document.getElementById("hamburguer-button");
+const hamburguerText = document.getElementById("hamburguer-menu");
 
 regularTimerForm.style.display = "none";
 
@@ -50,3 +51,13 @@ function selectChange(type){
         mission.style.display = "flex";
     }
 }
+
+hamburguerButton.addEventListener("click", function(){
+    hamburguerText.style.display = "flex";
+})
+
+document.addEventListener("click", function(event){
+    if(!hamburguerButton.contains(event.target)){
+        hamburguerText.style.display = "none";
+    }
+})
