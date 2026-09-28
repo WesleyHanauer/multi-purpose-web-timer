@@ -1,6 +1,6 @@
 const regularTimerForm = document.getElementById("regularTimerForm");
 const exerciseTimerForm = document.getElementById("exerciseTimerForm");
-const info = document.getElementById("info");
+const mission = document.getElementById("mission");
 const exerciseLabel = document.getElementById("exerciseLabel");
 const regularLabel = document.getElementById("regularLabel");
 
@@ -38,7 +38,7 @@ function selectChange(type){
     if (type == "regularTimer") {
         regularTimerForm.style.display = "flex";
         exerciseTimerForm.style.display = "none";
-        info.style.display = "none";
+        mission.style.display = "none";
         regularLabel.classList.add("bg-sky-700");
         exerciseLabel.classList.remove("bg-sky-700");
         
@@ -47,6 +47,6 @@ function selectChange(type){
         regularLabel.classList.remove("bg-sky-700");
         exerciseTimerForm.style.display = "flex";
         regularTimerForm.style.display = "none";
-        info.style.display = "flex";
+        mission.style.display = "flex";
     }
 }

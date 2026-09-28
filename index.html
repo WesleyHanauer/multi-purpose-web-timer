@@ -9,95 +9,112 @@
     <link rel="stylesheet" href="./styles/main.css">
     <title>Sedentary Timer</title>
 </head>
-<body class="bg-[#0B120C] text-[#E2E8E4] flex flex-col items-center justify-center h-screen cursor-default">
-    <p id="info" class="text-white w-[40%] mb-4 text-justify">Roughly 43% of all adults worldwide are overweight,
-        regardless of the reasons, staying seated for longer periods of times is extremely harmful for your overall
-        health, this app aims to remind you to get up and move around for a bit</p>
+<body class="bg-[#0B120C] text-[#E2E8E4] h-screen cursor-default">
+    <header class="fixed opacity-90 bg-sky-700 flex w-full h-[5vh] items-center justify-center">
+        <div class="absolute left-[4vw] flex">
+            <img class="max-h-[3vh] lg:max-w-[3vw]" src="./public/images/logo.png">
+            <span>Sedentary timer</span>
+        </div>
+        <div class="hidden sm:block space-x-6">
+            <a href="#timer" class="hover:underline">Timer</a>
+            <a href="#mission" class="hover:underline">Mission</a>
+            <a href="#research" class="hover:underline">Clinical Research</a>
+        </div>
+    </header>
 
-    <div id="timerTypeSelector">
-        <label class="underline cursor-pointer hover:bg-sky-700" for="regularTimer" id="regularLabel">Regular timer</label>
-        <input type="radio" id="regularTimer" value="regularTimer" name="timerSelect" />
+    <section id="timer" class="h-full flex flex-col items-center justify-center">
+        <div id="timerTypeSelector" class="flex">
+            <label class="underline cursor-pointer hover:bg-sky-700" for="regularTimer" id="regularLabel">Regular timer</label>
+            <input type="radio" id="regularTimer" value="regularTimer" name="timerSelect" />
 
-        <label class="underline cursor-pointer hover:bg-sky-700 bg-sky-700" for="exerciseTimer" id="exerciseLabel">Exercise timer</label>
-        <input type="radio" id="exerciseTimer" name="timerSelect" value="exerciseTimer" />
-    </div>
+            <label class="underline cursor-pointer hover:bg-sky-700 bg-sky-700" for="exerciseTimer" id="exerciseLabel">Exercise timer</label>
+            <input type="radio" id="exerciseTimer" name="timerSelect" value="exerciseTimer" />
+        </div>
 
-    <form id="regularTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
-        <div>
-            <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="regularInputH" class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
-            <span>:</span>
-            <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="regularInputM" class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
-            <span>:</span>
-            <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="regularInputS" class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
-        </div>
-        <div>
-            <button onclick="regularResetTimer()" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
-                Reset timer
-            </button>
-            <button onclick="regularStopTimer()" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
-                Stop timer
-            </button>
-            <button onclick="regularStartTimer()" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
-                Start timer
-            </button>
-        </div>
-    </form>
-
-    <form id="exerciseTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
-        <div class="flex justify-between items-center w-full">
-            <div class="flex-1">
+        <form id="regularTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
+            <div>
+                <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="regularInputH" class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
+                <span>:</span>
+                <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="regularInputM" class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
+                <span>:</span>
+                <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="regularInputS" class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
             </div>
-            <div class="text-center">
-                <span>Exercising time</span>
-                <span class="tooltip">ℹ️</span>
+            <div>
+                <button onclick="regularResetTimer()" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
+                    Reset timer
+                </button>
+                <button onclick="regularStopTimer()" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
+                    Stop timer
+                </button>
+                <button onclick="regularStartTimer()" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
+                    Start timer
+                </button>
             </div>
-            <div class="flex-1 text-justify">
-                <span class="tooltiptext bg-sky-700 p-3 rounded-xl absolute right-[25vw] w-[20vw]">This is the amount of time you exercise for. (Recomended 2-5 minutes)</span>
+        </form>
+        <form id="exerciseTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex-1">
+                </div>
+                <div class="text-center">
+                    <span>Exercising time</span>
+                    <span class="tooltip">ℹ️</span>
+                </div>
+                <div class="flex-1 text-justify">
+                    <span class="tooltiptext bg-sky-700 p-3 rounded-xl absolute right-[25vw] w-[20vw]">This is the amount of time you exercise for. (Recomended 2-5 minutes)</span>
+                </div>
             </div>
-        </div>
-        <div class="flex">
-            <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingM"
-            class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
-            w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
-            <span>:</span>
-            <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingS"
-            class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
-            w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
-        </div>
-        <div class="flex justify-between items-center w-full">
-            <div class="flex-1">
-            </div>
-            <div class="text-center">
-                <span>Resting time</span>
-                <span class="tooltip">ℹ️</span>
-            </div>
-            <div class="flex-1 text-justify">
-                <span class="tooltiptext bg-sky-700 p-3 rounded-xl absolute right-[25vw] w-[20vw]">This is the amount of time between each set of exercises. (Recommended 30-45 minutes)</span>
-            </div>
-        </div>
-        <div class="flex">
-                <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationM"
+            <div class="flex">
+                <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingM"
                 class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
                 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
                 <span>:</span>
-                <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationS"
+                <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingS"
                 class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
                 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
-        </div>
-        <p>Loop?</p>
-        <input class="cursor-pointer" id="exerciseLoop" type="checkbox" checked>
-        <div>
-            <button onclick="exerciseResetTimer()" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
-                Reset timer
-            </button>
-            <button onclick="exerciseStopTimer()" class="border border-[#233827] rounded bg-[#2ECC71] px-2">
-                Stop timer
-            </button>
-            <button onclick="exerciseStartTimer()" class="border border-[#233827] rounded bg-[#2ECC71] px-2">
-                Start timer
-            </button>
-        </div>
-    </form>
+            </div>
+            <div class="flex justify-between items-center w-full">
+                <div class="flex-1">
+                </div>
+                <div class="text-center">
+                    <span>Resting time</span>
+                    <span class="tooltip">ℹ️</span>
+                </div>
+                <div class="flex-1 text-justify">
+                    <span class="tooltiptext bg-sky-700 p-3 rounded-xl absolute right-[25vw] w-[20vw]">This is the amount of time between each set of exercises. (Recommended 30-45 minutes)</span>
+                </div>
+            </div>
+            <div class="flex">
+                    <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationM"
+                    class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
+                    w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
+                    <span>:</span>
+                    <input placeholder="00" inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationS"
+                    class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
+                    w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
+            </div>
+            <p>Loop?</p>
+            <input class="cursor-pointer" id="exerciseLoop" type="checkbox" checked>
+            <div>
+                <button onclick="exerciseResetTimer()" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
+                    Reset timer
+                </button>
+                <button onclick="exerciseStopTimer()" class="border border-[#233827] rounded bg-[#2ECC71] px-2">
+                    Stop timer
+                </button>
+                <button onclick="exerciseStartTimer()" class="border border-[#233827] rounded bg-[#2ECC71] px-2">
+                    Start timer
+                </button>
+            </div>
+        </form>
+    </section>
+    <section id="mission" class="h-full flex flex-col justify-center items-center">
+        <p id="info" class="text-white w-[40%] mb-4 text-justify">Roughly 43% of all adults worldwide are overweight,
+        regardless of the reasons, staying seated for longer periods of times is extremely harmful for your overall
+        health, this app aims to remind you to get up and move around for a bit</p>
+    </section>
+    <section id="research" class="h-full">
+
+    </section>
     <script src="./scripts/setup.js"></script>
     <script src="./scripts/regularTimer.js"></script>
     <script src="./scripts/exerciseTimer.js"></script>
