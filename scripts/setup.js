@@ -17,7 +17,7 @@ const tooltips = document.querySelectorAll("span[class=tooltip]");
 
 for(let i=0;i<tooltips.length;i++){
     const tooltiptext = document.getElementsByClassName("tooltiptext"); 
-
+    tooltiptext[i].style.display = "none";
     tooltips[i].addEventListener("mouseover", function(){
         tooltiptext[i].removeAttribute("style");
     })
