@@ -4,6 +4,15 @@ const exerciseLabel = document.getElementById("exerciseLabel");
 const regularLabel = document.getElementById("regularLabel");
 const hamburguerButton = document.getElementById("hamburguer-button");
 const hamburguerText = document.getElementById("hamburguer-menu");
+const radioButtons = document.querySelectorAll("input[name=timerSelect]");
+const tooltips = document.querySelectorAll("span[class=tooltip]");
+
+var timer = null;
+
+let timerRunning=false;
+
+var audio = new Audio('./public/audio/alarm.mp3');
+audio.currentTime = 1;
 
 regularTimerForm.style.display = "none";
 
@@ -12,8 +21,6 @@ window.addEventListener('load', () => {
     exerciseTimerForm.reset();
     regularTimerForm.style.display = "none";
 });
-
-const tooltips = document.querySelectorAll("span[class=tooltip]");
 
 for(let i=0;i<tooltips.length;i++){
     const tooltiptext = document.getElementsByClassName("tooltiptext"); 
@@ -25,8 +32,6 @@ for(let i=0;i<tooltips.length;i++){
         tooltiptext[i].style.display = "none";
     })
 }
-
-const radioButtons = document.querySelectorAll("input[name=timerSelect]");
 
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener("change", (event) => {
@@ -58,3 +63,7 @@ document.addEventListener("click", function(event){
         hamburguerText.style.display = "none";
     }
 })
+
+function convertToSeconds(hours, minutes, seconds){
+    return ((hours * 60) * 60) + (minutes * 60) + seconds;
+}
