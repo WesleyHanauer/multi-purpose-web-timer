@@ -1,47 +1,40 @@
-const hoursInput = document.getElementById("regularInputH");
-const minutesInput = document.getElementById("regularInputM");
-const secondsInput = document.getElementById("regularInputS");
-
-let lessHours;
-let lessMinutes;
-let lessSeconds;
+const regularTimerHourInput = document.getElementById("regularInputH");
+const regularTimerMinuteInput = document.getElementById("regularInputM");
+const regularTimerSecondInput = document.getElementById("regularInputS");
 
 function startRegularTimer(){
-    const hours = Number(hoursInput.value);
-    const minutes = Number(minutesInput.value);
-    const seconds = Number(secondsInput.value);
+    const hours = Number(regularTimerHourInput.value);
+    const minutes = Number(regularTimerMinuteInput.value);
+    const seconds = Number(regularTimerSecondInput.value);
     let totalSeconds = convertToSeconds(hours, minutes, seconds);
-        if(timer == null){
-            timer = setInterval(() => {
+        if(regularTimer == null){
+            regularTimer = setInterval(() => {
             if(totalSeconds>0){
                 totalSeconds-=1;
-                lessHours = Math.floor(totalSeconds / 3600);
-                lessMinutes = Math.floor((totalSeconds % 3600) / 60);
-                lessSeconds = totalSeconds % 60;
-                hoursInput.value = lessHours;
-                minutesInput.value = lessMinutes;
-                secondsInput.value = lessSeconds;
+                regularTimerHourInput.value = convertSecondsToHour(totalSeconds);
+                regularTimerMinuteInput.value = convertSecondsToMinutes(totalSeconds);
+                regularTimerSecondInput.value = getRestOfSeconds(totalSeconds);
             }else{
-                clearInterval(timer);
-                timer = null
+                clearInterval(regularTimer);
                 audio.play();
                 alert("Timer done");
                 audio.pause();
                 audio.currentTime = 1;
+                regularTimer = null
             }
         }, 1000);
     }
 }
 
 function stopRegularTimer(){
-    clearInterval(timer);
-    timer = null;
+    clearInterval(regularTimer);
+    regularTimer = null;
 }
 
 function resetRegularTimer(){
-    hoursInput.value = "";
-    minutesInput.value = "";
-    secondsInput.value = "";
-    clearInterval(timer);
-    timer = null;
+    clearInterval(regularTimer);
+    regularTimerHourInput.value = "";
+    regularTimerMinuteInput.value = "";
+    regularTimerSecondInput.value = "";
+    regularTimer = null;
 }

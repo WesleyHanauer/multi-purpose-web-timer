@@ -1,73 +1,75 @@
 const exercisingTimeM = document.getElementById("exerciseInputExercisingM");
 const exercisingTimeS = document.getElementById("exerciseInputExercisingS");
-const separationTimeM = document.getElementById("exerciseInputSeparationM");
-const separationTimeS = document.getElementById("exerciseInputSeparationS");
+const restingTimeM = document.getElementById("exerciseInputSeparationM");
+const restingTimeS = document.getElementById("exerciseInputSeparationS");
 const loopCheck = document.getElementById("exerciseLoop");
 
 var audio = new Audio('./public/audio/alarm.mp3');
 audio.currentTime = 1;
 
-let exercisingTimer;
-
 let lessMinutesExercising;
 let lessSecondsExercising;
-let lessMinutesSeparation;
-let lessSecondsSeparation;
+let lessMinutesresting;
+let lessSecondsresting;
 
 function startExerciseTimer(){
-    const separationMinutesInput = Number(separationTimeM.value);
-    const separationSecondsInput = Number(separationTimeS.value);
-    const exercisingMinutesInput = Number(exercisingTimeM.value);
-    const exercisingSecondsInput = Number(exercisingTimeS.value);
+    if(exerciseTimer == null){
+        const restingMinutesInput = Number(restingTimeM.value);
+        const restingSecondsInput = Number(restingTimeS.value);
+        const exercisingMinutesInput = Number(exercisingTimeM.value);
+        const exercisingSecondsInput = Number(exercisingTimeS.value);
 
-    let separationSeconds = (separationMinutesInput * 60) + separationSecondsInput;
-    let exercisingSeconds = (exercisingMinutesInput * 60) + exercisingSecondsInput;
+        let restingSeconds = (restingMinutesInput * 60) + restingSecondsInput;
+        let exercisingSeconds = (exercisingMinutesInput * 60) + exercisingSecondsInput;
 
-    exercisingTimer = setInterval(() => {
-        if(separationSeconds>0){
-            separationSeconds-=1;
+        exerciseTimer = setInterval(() => {
+            if(restingSeconds>0){
+                restingSeconds-=1;
 
-            lessMinutesSeparation = Math.floor((separationSeconds % 3600) / 60);
-            lessSecondsSeparation = separationSeconds % 60;
+                lessMinutesresting = Math.floor((restingSeconds % 3600) / 60);
+                lessSecondsresting = restingSeconds % 60;
 
-            separationTimeM.value = lessMinutesSeparation;
-            separationTimeS.value = lessSecondsSeparation;
-        }else if(exercisingSeconds>0){
-            
-            if(separationSeconds == 0 && exercisingSeconds == ((exercisingMinutesInput * 60) + exercisingSecondsInput)){
+                restingTimeM.value = lessMinutesresting;
+                restingTimeS.value = lessSecondsresting;
+            }else if(exercisingSeconds>0){
+                if(restingSeconds == 0 && exercisingSeconds == ((exercisingMinutesInput * 60) + exercisingSecondsInput)){
+                    audio.play();
+                    alert("Timer done, time to exercise!");
+                    audio.pause();
+                    audio.currentTime = 1;
+                }
+                exercisingSeconds-=1;
+
+                lessMinutesExercising = Math.floor((exercisingSeconds % 3600) / 60);
+                lessSecondsExercising = exercisingSeconds % 60;
+
+                exercisingTimeM.value = lessMinutesExercising;
+                exercisingTimeS.value = lessSecondsExercising;
+            }else if(restingSeconds == 0 && exercisingSeconds == 0 && loopCheck.checked){
+                restingSeconds = (restingMinutesInput * 60) + restingSecondsInput;
+                exercisingSeconds = (exercisingMinutesInput * 60) + exercisingSecondsInput;
                 audio.play();
-                alert("Timer done, time to exercise!");
+                alert("Exercise done, time to rest!");
                 audio.pause();
                 audio.currentTime = 1;
+            }else{
+                clearInterval(exerciseTimer);
+                exerciseTimer = null;
             }
-            exercisingSeconds-=1;
-
-            lessMinutesExercising = Math.floor((exercisingSeconds % 3600) / 60);
-            lessSecondsExercising = exercisingSeconds % 60;
-
-            exercisingTimeM.value = lessMinutesExercising;
-            exercisingTimeS.value = lessSecondsExercising;
-        }else if(separationSeconds == 0 && exercisingSeconds == 0 && loopCheck.checked){
-            separationSeconds = (separationMinutesInput * 60) + separationSecondsInput;
-            exercisingSeconds = (exercisingMinutesInput * 60) + exercisingSecondsInput;
-            audio.play();
-            alert("Exercise done, time to rest!");
-            audio.pause();
-            audio.currentTime = 1;
-        }else{
-            clearInterval(exercisingTimer);
-        }
-    }, 1000);
+        }, 1000);
+    }
 }
 
 function stopExerciseTimer(){
-    clearInterval(exercisingTimer);
+    clearInterval(exerciseTimer);
+    exerciseTimer = null;
 }
 
 function resetExerciseTimer(){
+    clearInterval(exerciseTimer);
     exercisingTimeM.value = "";
     exercisingTimeS.value = "";
-    separationTimeM.value = "";
-    separationTimeS.value = "";
-    clearInterval(exercisingTimer);
+    restingTimeM.value = "";
+    restingTimeS.value = "";
+    exerciseTimer = null;
 }

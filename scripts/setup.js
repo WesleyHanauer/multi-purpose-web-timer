@@ -2,13 +2,9 @@ const regularTimerForm = document.getElementById("regularTimerForm");
 const exerciseTimerForm = document.getElementById("exerciseTimerForm");
 const exerciseLabel = document.getElementById("exerciseLabel");
 const regularLabel = document.getElementById("regularLabel");
-const hamburguerButton = document.getElementById("hamburguer-button");
-const hamburguerText = document.getElementById("hamburguer-menu");
-const radioButtons = document.querySelectorAll("input[name=timerSelect]");
-const tooltips = document.querySelectorAll("span[class=tooltip]");
 
-var timer = null;
-var timerRunning = false;
+var regularTimer = null;
+var exerciseTimer = null;
 
 var audio = new Audio('./public/audio/alarm.mp3');
 audio.currentTime = 1;
@@ -32,4 +28,16 @@ function selectChange(type){
 
 function convertToSeconds(hours, minutes, seconds){
     return ((hours * 60) * 60) + (minutes * 60) + seconds;
+}
+
+function convertSecondsToHour(seconds){
+    return Math.floor(seconds / 3600);
+}
+
+function convertSecondsToMinutes(seconds){
+    return Math.floor((seconds % 3600) / 60);
+}
+
+function getRestOfSeconds(seconds){
+    return seconds % 60;
 }

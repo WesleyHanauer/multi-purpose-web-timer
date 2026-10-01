@@ -4,6 +4,10 @@ const resetExerciseTimerButton = document.getElementById("resetExerciseTimerButt
 const startRegularTimerButton = document.getElementById("startRegularTimerButton");
 const stopRegularTimerButton = document.getElementById("stopRegularTimerButton");
 const resetRegularTimerButton = document.getElementById("resetRegularTimerButton");
+const radioButtons = document.querySelectorAll("input[name=timerSelect]");
+const tooltips = document.querySelectorAll("span[class=tooltip]");
+const hamburguerButton = document.getElementById("hamburguer-button");
+const hamburguerText = document.getElementById("hamburguer-menu");
 
 startRegularTimerButton.addEventListener("click", function(){
     startRegularTimer();
