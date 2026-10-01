@@ -6,7 +6,7 @@ let lessHours;
 let lessMinutes;
 let lessSeconds;
 
-function regularStartTimer(){
+function startRegularTimer(){
     const hours = Number(hoursInput.value);
     const minutes = Number(minutesInput.value);
     const seconds = Number(secondsInput.value);
@@ -33,12 +33,12 @@ function regularStartTimer(){
     }
 }
 
-function regularStopTimer(){
+function stopRegularTimer(){
     clearInterval(timer);
     timer = null;
 }
 
-function regularResetTimer(){
+function resetRegularTimer(){
     hoursInput.value = "";
     minutesInput.value = "";
     secondsInput.value = "";
