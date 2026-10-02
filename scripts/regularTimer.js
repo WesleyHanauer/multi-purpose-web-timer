@@ -7,7 +7,7 @@ function startRegularTimer(){
     const minutes = Number(regularTimerMinuteInput.value);
     const seconds = Number(regularTimerSecondInput.value);
     let totalSeconds = convertToSeconds(hours, minutes, seconds);
-        if(regularTimer == null){
+        if(regularTimer == null && totalSeconds != 0){
             regularTimer = setInterval(() => {
             if(totalSeconds>0){
                 totalSeconds-=1;
