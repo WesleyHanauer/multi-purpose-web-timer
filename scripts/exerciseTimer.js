@@ -4,9 +4,6 @@ const restingTimeM = document.getElementById("exerciseInputSeparationM");
 const restingTimeS = document.getElementById("exerciseInputSeparationS");
 const loopCheck = document.getElementById("exerciseLoop");
 
-var audio = new Audio('./public/audio/alarm.mp3');
-audio.currentTime = 1;
-
 let lessMinutesExercising;
 let lessSecondsExercising;
 let lessMinutesresting;
@@ -19,8 +16,8 @@ function startExerciseTimer(){
         const exercisingMinutesInput = Number(exercisingTimeM.value);
         const exercisingSecondsInput = Number(exercisingTimeS.value);
 
-        let restingSeconds = (restingMinutesInput * 60) + restingSecondsInput;
-        let exercisingSeconds = (exercisingMinutesInput * 60) + exercisingSecondsInput;
+        let restingSeconds = convertToSeconds(0, restingMinutesInput, restingSecondsInput);
+        let exercisingSeconds = convertToSeconds(0, exercisingMinutesInput, exercisingSecondsInput);
 
         exerciseTimer = setInterval(() => {
             if(restingSeconds>0){
