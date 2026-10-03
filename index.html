@@ -9,25 +9,25 @@
     <link rel="stylesheet" href="./styles/main.css">
     <title>Sedentary Timer</title>
 </head>
-<body class="bg-[#0B120C] text-[#E2E8E4] h-screen cursor-default">
-    <header class="fixed opacity-90 bg-sky-700 flex w-full h-[5vh] items-center justify-center">
+<body class="bg-gradient-to-b from-gray-900 via-neutral-950 to-slate-900 bg-[length:400%_400%] animate-gradient min-h-screen text-white h-screen cursor-default">
+    <header class="fixed opacity-90 bg-indigo-950 flex w-full h-[8vh] items-center justify-center">
         <div class="absolute left-[4vw] flex space-x-2">
             <img class="max-h-[3vh] lg:max-w-[3vw]" src="./public/images/logo.png">
             <span>Sedentary timer</span>
         </div>
         <div class="hidden sm:block space-x-6">
-            <a href="#timer" class="hover:underline">Timer</a>
-            <a href="#mission" class="hover:underline">Mission</a>
-            <a href="#research" class="hover:underline">Clinical Research</a>
+            <a href="#timer" class="hover:text-stone-300">Timer</a>
+            <a href="#mission" class="hover:text-stone-300">Mission</a>
+            <a href="#research" class="hover:text-stone-300">Clinical Research</a>
         </div>
         <div class="inline sm:hidden absolute right-[1vw] flex">
             <img id="hamburguer-button" class="max-h-[3vh] lg:max-w-[3vw]" src="./public/images/hamburguer.png">
         </div>
         <div id="hamburguer-menu" class="hidden absolute right-[0vw] top-[5vh] bg-sky-700 border p-7 text-xl">
             <div class="flex flex-col">
-                <a href="#timer" class="hover:underline">Timer</a>
-                <a href="#mission" class="hover:underline">Mission</a>
-                <a href="#research" class="hover:underline">Clinical Research</a>
+                <a href="#timer">Timer</a>
+                <a href="#mission">Mission</a>
+                <a href="#research">Clinical Research</a>
             </div>
         </div>
     </header>
@@ -36,10 +36,10 @@
 
         <div class="w-[30%] flex flex-col items-center absolute top-[32vh]">
             <div id="timerTypeSelector" class="flex flex-row justify-start self-start">
-                <label for="regularTimer" id="regularLabel" class="cursor-pointer hover:bg-sky-700">Regular timer</label>
+                <label for="regularTimer" id="regularLabel" class="cursor-pointer hover:text-stone-300 p-1 rounded-t">Regular timer</label>
                 <input type="radio" id="regularTimer" value="regularTimer" name="timerSelect"/>
 
-                <label for="exerciseTimer" id="exerciseLabel" class="cursor-pointer hover:bg-sky-700 bg-sky-700">Exercise timer</label>
+                <label for="exerciseTimer" id="exerciseLabel" class="cursor-pointer hover:text-stone-300 bg-slate-600 p-1 rounded-t">Exercise timer</label>
                 <input type="radio" id="exerciseTimer" name="timerSelect" value="exerciseTimer" checked/>
             </div>
 
@@ -51,29 +51,28 @@
         <form id="regularTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
             <div>
                 <span id="regularTimerHoursDisplay" style="display: hidden;"></span>
-                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="regularInputH"
-                class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw] text-center">
+                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="regularTimerHoursInput"
+                class="placeholder:text-white rounded-md bg-slate-600 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw] text-center">
                 <span>:</span>
                 <span id="regularTimerMinutesDisplay" style="display: hidden;"></span>
-                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="regularInputM"
-                class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw] text-center">
+                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="regularTimerMinutesInput"
+                class="placeholder:text-white rounded-md bg-slate-600 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw] text-center">
                 <span>:</span>
                 <span id="regularTimerSecondsDisplay" style="display: hidden;"></span>
-                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="regularInputS"
-                class="placeholder:text-[#E2E8E4] border border-[#233827] rounded-md bg-[#2ECC71] w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw] text-center">
+                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="regularTimerSecondsInput"
+                class="placeholder:text-white rounded-md bg-slate-600 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw] text-center">
             </div>
-            <div>
-                <button id="resetRegularTimerButton" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
-                    Reset timer
-                </button>
-                <button id="stopRegularTimerButton" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
-                    Stop timer
-                </button>
-                <button id="startRegularTimerButton" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
+                <button id="startRegularTimerButton" class="rounded bg-slate-600 px-2 w-[7vw]">
                     Start timer
                 </button>
-            </div>
+                <button id="stopRegularTimerButton" class="rounded bg-slate-600 px-2 w-[7vw]">
+                    Stop timer
+                </button>
+                <button id="resetRegularTimerButton" class="rounded bg-slate-600 px-2 w-[7vw]">
+                    Reset timer
+                </button>
         </form>
+
         <form id="exerciseTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
             <div class="flex justify-between items-center w-full">
                 <div class="flex-1">
@@ -88,11 +87,11 @@
             </div>
             <div class="flex">
                 <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingM"
-                class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
+                class="rounded-md bg-slate-600 placeholder:text-white text-center
                 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
                 <span>:</span>
                 <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingS"
-                class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
+                class="rounded-md bg-slate-600 placeholder:text-white text-center
                 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
             </div>
             <div class="flex justify-between items-center w-full">
@@ -108,33 +107,35 @@
             </div>
             <div class="flex">
                     <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationM"
-                    class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
+                    class="bg-slate-600 rounded-md placeholder:text-white text-center
                     w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
                     <span>:</span>
                     <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationS"
-                    class="border border-[#233827] rounded-md bg-[#2ECC71] placeholder:text-[#E2E8E4] text-center
+                    class="bg-slate-600 rounded-md placeholder:text-white text-center
                     w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
             </div>
             <p>Loop?</p>
             <input class="cursor-pointer" id="exerciseLoop" type="checkbox" checked>
             <div>
-                <button id="resetExerciseTimerButton" class="rounded border border-[#233827] bg-[#2ECC71] px-2">
+                <button id="resetExerciseTimerButton" class="bg-slate-600 rounded px-2">
                     Reset timer
                 </button>
-                <button id="stopExerciseTimerButton" class="border border-[#233827] rounded bg-[#2ECC71] px-2">
+                <button id="stopExerciseTimerButton" class="bg-slate-600 rounded px-2">
                     Stop timer
                 </button>
-                <button id="startExerciseTimerButton" class="border border-[#233827] rounded bg-[#2ECC71] px-2">
+                <button id="startExerciseTimerButton" class="bg-slate-600 rounded px-2">
                     Start timer
                 </button>
             </div>
         </form>
     </section>
+
     <section id="mission" class="h-full flex flex-col justify-center items-center">
         <p class="text-white w-[40%] mb-4 text-justify">Roughly 43% of all adults worldwide are overweight,
         regardless of the reasons, staying seated for longer periods of times is extremely harmful for your overall
         health, this app aims to remind you to get up and move around for a bit</p>
     </section>
+
     <section id="research" class="h-full">
 
     </section>

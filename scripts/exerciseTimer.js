@@ -3,6 +3,7 @@ const exercisingTimeS = document.getElementById("exerciseInputExercisingS");
 const restingTimeM = document.getElementById("exerciseInputSeparationM");
 const restingTimeS = document.getElementById("exerciseInputSeparationS");
 const loopCheck = document.getElementById("exerciseLoop");
+var exerciseTimer = null;
 
 let lessMinutesExercising;
 let lessSecondsExercising;
