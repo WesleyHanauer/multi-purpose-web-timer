@@ -7,6 +7,14 @@ const radioButtons = document.querySelectorAll("input[name=timerSelect]");
 const tooltips = document.querySelectorAll("span[class=tooltip]");
 const hamburguerButton = document.getElementById("hamburguer-button");
 const hamburguerText = document.getElementById("hamburguer-menu");
+const closeRegularTimerModal = document.getElementById("closeRegularTimerModal");
+const regularTimerModal = document.getElementById("regularTimerModal");
+
+closeRegularTimerModal.addEventListener("click", function(){
+    regularTimerModal.close();
+    audio.pause();
+    audio.currentTime = 1;
+})
 
 startRegularTimerButton.addEventListener("click", function(){
     startRegularTimer();

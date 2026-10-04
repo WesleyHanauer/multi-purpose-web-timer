@@ -58,9 +58,7 @@ function startRegularTimer(){
                 }else{
                     clearInterval(regularTimer);
                     audio.play();
-                    alert("Timer done");
-                    audio.pause();
-                    audio.currentTime = 1;
+                    regularTimerModal.showModal();
                     regularTimer = null;
                     regularTimerRevertInputsAndHideSpans();
                     startRegularTimerButton.style.display = "inline";
@@ -76,6 +74,7 @@ function stopRegularTimer(){
         regularTimer = null;
         getAndSetRegularTimerInputUpdatedValues(totalSeconds);
         regularTimerRevertInputsAndHideSpans();
+        startRegularTimerButton.style.display = "inline";
     }
 }
 
@@ -86,4 +85,5 @@ function resetRegularTimer(){
     regularTimerSecondsInput.value = "";
     regularTimer = null;
     regularTimerRevertInputsAndHideSpans();
+    startRegularTimerButton.style.display = "inline";
 }
