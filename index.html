@@ -16,25 +16,25 @@
             <span>Sedentary timer</span>
         </div>
         <div class="hidden sm:block space-x-6">
-            <a href="#timer" class="hover:text-stone-300">Timer</a>
+            <a href="#timers" class="hover:text-stone-300">Timers</a>
             <a href="#mission" class="hover:text-stone-300">Mission</a>
             <a href="#research" class="hover:text-stone-300">Clinical Research</a>
         </div>
         <div class="inline sm:hidden absolute right-[1vw] flex">
             <img id="hamburguer-button" class="max-h-[3vh] lg:max-w-[3vw]" src="./public/images/hamburguer.png">
         </div>
-        <div id="hamburguer-menu" class="hidden absolute right-[0vw] top-[5vh] bg-sky-700 border p-7 text-xl">
+        <div id="hamburguer-menu" class="hidden absolute right-[0vw] top-[5vh] bg-indigo-950 border p-7 text-xl">
             <div class="flex flex-col">
-                <a href="#timer">Timer</a>
+                <a href="#timers">Timer</a>
                 <a href="#mission">Mission</a>
                 <a href="#research">Clinical Research</a>
             </div>
         </div>
     </header>
 
-    <section id="timer" class="h-full flex flex-col items-center justify-center">
+    <section id="timers" class="h-full flex flex-col items-center justify-center">
 
-        <div class="w-[30%] flex flex-col items-center absolute top-[32vh]">
+        <div class="w-[30%] flex flex-col items-center absolute top-[28vh]">
             <div id="timerTypeSelector" class="flex flex-row justify-start self-start">
                 <label for="regularTimer" id="regularLabel" class="cursor-pointer hover:text-stone-300 p-1 rounded-t">Regular timer</label>
                 <input type="radio" id="regularTimer" value="regularTimer" name="timerSelect"/>
@@ -82,15 +82,17 @@
                     <span class="tooltip">ℹ️</span>
                 </div>
                 <div class="flex-1 text-justify">
-                    <span class="tooltiptext bg-sky-700 p-3 rounded-xl absolute right-[25vw] w-[20vw]">This is the amount of time you exercise for. (Recomended 2-5 minutes)</span>
+                    <span class="tooltiptext bg-indigo-950 p-3 rounded-xl absolute right-[25vw] w-[20vw]">This is the amount of time you exercise for. (Recomended 2-5 minutes)</span>
                 </div>
             </div>
-            <div class="flex">
-                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingM"
+            <div>
+                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseTimerExercisingMinutesInput"
                 class="rounded-md bg-slate-600 placeholder:text-white text-center
                 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
+                <span id="exerciseTimerExercisingMinutesDisplay"></span>
                 <span>:</span>
-                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseInputExercisingS"
+                <span id="exerciseTimerExercisingSecondsDisplay"></span>
+                <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseTimerExercisingSecondsInput"
                 class="rounded-md bg-slate-600 placeholder:text-white text-center
                 w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
             </div>
@@ -102,31 +104,28 @@
                     <span class="tooltip">ℹ️</span>
                 </div>
                 <div class="flex-1 text-justify">
-                    <span class="tooltiptext bg-sky-700 p-3 rounded-xl absolute right-[25vw] w-[20vw]">This is the amount of time between each set of exercises. (Recommended 30-45 minutes)</span>
+                    <span class="tooltiptext bg-indigo-950 p-3 rounded-xl absolute right-[25vw] w-[20vw]">This is the amount of time between each set of exercises. (Recommended 30-45 minutes)</span>
                 </div>
             </div>
-            <div class="flex">
-                    <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationM"
+            <div>
+                    <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseTimerRestingMinutesInput"
                     class="bg-slate-600 rounded-md placeholder:text-white text-center
                     w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
+                    <span id="exerciseTimerRestingMinutesDisplay"></span>
                     <span>:</span>
-                    <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseInputSeparationS"
+                    <span id="exerciseTimerRestingSecondsDisplay"></span>
+                    <input placeholder="0" inputmode="numeric" pattern="[0-9]*" id="exerciseTimerRestingSecondsInput"
                     class="bg-slate-600 rounded-md placeholder:text-white text-center
                     w-8 sm:w-[7vw] md:w-[7vw] lg:w-[2vw]">
             </div>
             <p>Loop?</p>
             <input class="cursor-pointer" id="exerciseLoop" type="checkbox" checked>
-            <div>
-                <button id="resetExerciseTimerButton" class="bg-slate-600 rounded px-2">
-                    Reset timer
-                </button>
-                <button id="stopExerciseTimerButton" class="bg-slate-600 rounded px-2">
-                    Stop timer
-                </button>
-                <button id="startExerciseTimerButton" class="bg-slate-600 rounded px-2">
-                    Start timer
-                </button>
-            </div>
+            <button id="startExerciseTimerButton" class="rounded bg-slate-600 px-2 w-[7vw]">
+                Start timer
+            </button>
+            <button id="resetExerciseTimerButton" class="rounded bg-slate-600 px-2 w-[7vw]">
+                Reset timer
+            </button>
         </form>
     </section>
 

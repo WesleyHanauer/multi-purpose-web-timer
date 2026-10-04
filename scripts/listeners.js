@@ -1,5 +1,4 @@
 const startExerciseTimerButton = document.getElementById("startExerciseTimerButton");
-const stopExerciseTimerButton = document.getElementById("stopExerciseTimerButton");
 const resetExerciseTimerButton = document.getElementById("resetExerciseTimerButton");
 const startRegularTimerButton = document.getElementById("startRegularTimerButton");
 const stopRegularTimerButton = document.getElementById("stopRegularTimerButton");
@@ -23,10 +22,6 @@ resetRegularTimerButton.addEventListener("click", function(){
 
 startExerciseTimerButton.addEventListener("click", function(){
     startExerciseTimer();
-});
-
-stopExerciseTimerButton.addEventListener("click", function(){
-    stopExerciseTimer();
 });
 
 resetExerciseTimerButton.addEventListener("click", function(){

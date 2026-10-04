@@ -7,15 +7,6 @@ const regularTimerSecondsDisplay = document.getElementById("regularTimerSecondsD
 let regularTimer = null;
 let totalSeconds;
 
-function revertInputsAndHideSpans(){
-    regularTimerHoursInput.style.display = "inline";
-    regularTimerMinutesInput.style.display = "inline";
-    regularTimerSecondsInput.style.display = "inline";
-    regularTimerHoursDisplay.style.display = "none";
-    regularTimerMinutesDisplay.style.display = "none";
-    regularTimerSecondsDisplay.style.display ="none";
-}
-
 function hideRegularTimerInputs(){
     regularTimerHoursInput.style.display = "none";
     regularTimerMinutesInput.style.display = "none";
@@ -40,13 +31,23 @@ function getAndSetRegularTimerInputUpdatedValues(totalSeconds){
     regularTimerSecondsInput.value = getRestOfSeconds(totalSeconds);
 }
 
+function regularTimerRevertInputsAndHideSpans(){
+    regularTimerHoursInput.style.display = "inline";
+    regularTimerMinutesInput.style.display = "inline";
+    regularTimerSecondsInput.style.display = "inline";
+    regularTimerHoursDisplay.style.display = "none";
+    regularTimerMinutesDisplay.style.display = "none";
+    regularTimerSecondsDisplay.style.display ="none";
+}
+
 function startRegularTimer(){
     if(regularTimer == null){
         const hours = Number(regularTimerHoursInput.value);
         const minutes = Number(regularTimerMinutesInput.value);
         const seconds = Number(regularTimerSecondsInput.value);
         totalSeconds = convertToSeconds(hours, minutes, seconds);
-        if(totalSeconds > 0){
+        if(totalSeconds){
+            startRegularTimerButton.style.display = "none";
             hideRegularTimerInputs();
             showRegularTimerSpans();
             getAndSetRegularTimerSpanValues(totalSeconds);
@@ -60,8 +61,9 @@ function startRegularTimer(){
                     alert("Timer done");
                     audio.pause();
                     audio.currentTime = 1;
-                    regularTimer = null
-                    revertInputsAndHideSpans()
+                    regularTimer = null;
+                    regularTimerRevertInputsAndHideSpans();
+                    startRegularTimerButton.style.display = "inline";
                 }
             }, 1000);
         }
@@ -73,7 +75,7 @@ function stopRegularTimer(){
         clearInterval(regularTimer);
         regularTimer = null;
         getAndSetRegularTimerInputUpdatedValues(totalSeconds);
-        revertInputsAndHideSpans();
+        regularTimerRevertInputsAndHideSpans();
     }
 }
 
@@ -83,5 +85,5 @@ function resetRegularTimer(){
     regularTimerMinutesInput.value = "";
     regularTimerSecondsInput.value = "";
     regularTimer = null;
-    revertInputsAndHideSpans()
+    regularTimerRevertInputsAndHideSpans();
 }

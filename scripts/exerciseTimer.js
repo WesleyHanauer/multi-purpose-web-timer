@@ -1,34 +1,78 @@
-const exercisingTimeM = document.getElementById("exerciseInputExercisingM");
-const exercisingTimeS = document.getElementById("exerciseInputExercisingS");
-const restingTimeM = document.getElementById("exerciseInputSeparationM");
-const restingTimeS = document.getElementById("exerciseInputSeparationS");
+const exerciseTimerExercisingMinutesInput = document.getElementById("exerciseTimerExercisingMinutesInput");
+const exerciseTimerExercisingSecondsInput = document.getElementById("exerciseTimerExercisingSecondsInput");
+const exerciseTimerRestingMinutesInput = document.getElementById("exerciseTimerRestingMinutesInput");
+const exerciseTimerRestingSecondsInput = document.getElementById("exerciseTimerRestingSecondsInput");
+const exerciseTimerExercisingMinutesDisplay = document.getElementById("exerciseTimerExercisingMinutesDisplay");
+const exerciseTimerExercisingSecondsDisplay = document.getElementById("exerciseTimerExercisingSecondsDisplay");
+const exerciseTimerRestingMinutesDisplay = document.getElementById("exerciseTimerRestingMinutesDisplay");
+const exerciseTimerRestingSecondsDisplay = document.getElementById("exerciseTimerRestingSecondsDisplay");
 const loopCheck = document.getElementById("exerciseLoop");
-var exerciseTimer = null;
+let exercisingMinutes;
+let exercisingSeconds;
+let restingMinutes;
+let restingSeconds;
+let exercisingTotalSeconds;
+let restingTotalSeconds;
+let exerciseTimer = null;
 
-let lessMinutesExercising;
-let lessSecondsExercising;
-let lessMinutesresting;
-let lessSecondsresting;
+function hideExerciseTimerInputs(){
+    exerciseTimerExercisingMinutesInput.style.display = "none";
+    exerciseTimerExercisingSecondsInput.style.display = "none";
+    exerciseTimerRestingMinutesInput.style.display = "none";
+    exerciseTimerRestingSecondsInput.style.display = "none";
+}
+
+function showExerciseTimerDisplay(){
+    exerciseTimerExercisingMinutesDisplay.removeAttribute("style");
+    exerciseTimerExercisingSecondsDisplay.removeAttribute("style");
+    exerciseTimerRestingMinutesDisplay.removeAttribute("style");
+    exerciseTimerRestingSecondsDisplay.removeAttribute("style");
+}
+
+function getAndSetExerciseTimerSpanValues(exercisingSeconds, restingSeconds){
+    exerciseTimerExercisingMinutesDisplay.textContent = String(convertSecondsToMinutes(exercisingSeconds));
+    exerciseTimerExercisingSecondsDisplay.textContent = String(getRestOfSeconds(exercisingSeconds));
+    exerciseTimerRestingMinutesDisplay.textContent = String(convertSecondsToMinutes(restingSeconds));
+    exerciseTimerRestingSecondsDisplay.textContent = String(getRestOfSeconds(restingSeconds));
+}
+
+function getAndSetExerciseTimerExercisingInputUpdatedValues(exercisingSeconds){
+    exerciseTimerExercisingMinutesInput.value = convertSecondsToMinutes(exercisingSeconds);
+    exerciseTimerExercisingSecondsInput.value = getRestOfSeconds(exercisingSeconds);
+}
+
+function getAndSetExerciseTimerRestingInputUpdatedValues(restingSeconds){
+    exerciseTimerRestingMinutesInput.value = convertSecondsToMinutes(restingSeconds);
+    exerciseTimerRestingSecondsInput.value = getRestOfSeconds(restingSeconds);
+}
+
+function exerciseTimerRevertInputsAndHideSpans(){
+    exerciseTimerExercisingMinutesInput.style.display = "inline";
+    exerciseTimerExercisingSecondsInput.style.display = "inline";
+    exerciseTimerRestingMinutesInput.style.display = "inline";
+    exerciseTimerRestingSecondsInput.style.display = "inline";
+    exerciseTimerExercisingMinutesDisplay.style.display = "none";
+    exerciseTimerExercisingSecondsDisplay.style.display = "none";
+    exerciseTimerRestingMinutesDisplay.style.display = "none";
+    exerciseTimerRestingSecondsDisplay.style.display = "none";
+}
 
 function startExerciseTimer(){
     if(exerciseTimer == null){
-        const restingMinutesInput = Number(restingTimeM.value);
-        const restingSecondsInput = Number(restingTimeS.value);
-        const exercisingMinutesInput = Number(exercisingTimeM.value);
-        const exercisingSecondsInput = Number(exercisingTimeS.value);
-
-        let restingSeconds = convertToSeconds(0, restingMinutesInput, restingSecondsInput);
-        let exercisingSeconds = convertToSeconds(0, exercisingMinutesInput, exercisingSecondsInput);
-
+        startExerciseTimerButton.style.display = "none";
+        const exercisingMinutesInput = Number(exerciseTimerExercisingMinutesInput.value);
+        const exercisingSecondsInput = Number(exerciseTimerExercisingSecondsInput.value);
+        const restingMinutesInput = Number(exerciseTimerRestingMinutesInput.value);
+        const restingSecondsInput = Number(exerciseTimerRestingSecondsInput.value);
+        exercisingSeconds = convertToSeconds(0, exercisingMinutesInput, exercisingSecondsInput);
+        restingSeconds = convertToSeconds(0, restingMinutesInput, restingSecondsInput);
+        hideExerciseTimerInputs();
+        showExerciseTimerDisplay();
+        getAndSetExerciseTimerSpanValues(exercisingSeconds, restingSeconds);
         exerciseTimer = setInterval(() => {
             if(restingSeconds>0){
                 restingSeconds-=1;
-
-                lessMinutesresting = Math.floor((restingSeconds % 3600) / 60);
-                lessSecondsresting = restingSeconds % 60;
-
-                restingTimeM.value = lessMinutesresting;
-                restingTimeS.value = lessSecondsresting;
+                getAndSetExerciseTimerSpanValues(exercisingSeconds, restingSeconds);
             }else if(exercisingSeconds>0){
                 if(restingSeconds == 0 && exercisingSeconds == ((exercisingMinutesInput * 60) + exercisingSecondsInput)){
                     audio.play();
@@ -36,16 +80,12 @@ function startExerciseTimer(){
                     audio.pause();
                     audio.currentTime = 1;
                 }
+                getAndSetExerciseTimerSpanValues(exercisingSeconds, restingSeconds);
                 exercisingSeconds-=1;
-
-                lessMinutesExercising = Math.floor((exercisingSeconds % 3600) / 60);
-                lessSecondsExercising = exercisingSeconds % 60;
-
-                exercisingTimeM.value = lessMinutesExercising;
-                exercisingTimeS.value = lessSecondsExercising;
+                getAndSetExerciseTimerSpanValues(exercisingSeconds, restingSeconds);
             }else if(restingSeconds == 0 && exercisingSeconds == 0 && loopCheck.checked){
-                restingSeconds = (restingMinutesInput * 60) + restingSecondsInput;
-                exercisingSeconds = (exercisingMinutesInput * 60) + exercisingSecondsInput;
+                exercisingSeconds = convertToSeconds(0, exercisingMinutesInput, exercisingSecondsInput);
+                restingSeconds = convertToSeconds(0, restingMinutesInput, restingSecondsInput);
                 audio.play();
                 alert("Exercise done, time to rest!");
                 audio.pause();
@@ -53,21 +93,23 @@ function startExerciseTimer(){
             }else{
                 clearInterval(exerciseTimer);
                 exerciseTimer = null;
+                audio.play();
+                alert("Timer done, time to exercise!");
+                audio.pause();
+                audio.currentTime = 1;
+                startExerciseTimerButton.style.display = "inline";
             }
         }, 1000);
     }
 }
 
-function stopExerciseTimer(){
-    clearInterval(exerciseTimer);
-    exerciseTimer = null;
-}
-
 function resetExerciseTimer(){
     clearInterval(exerciseTimer);
-    exercisingTimeM.value = "";
-    exercisingTimeS.value = "";
-    restingTimeM.value = "";
-    restingTimeS.value = "";
+    exerciseTimerExercisingMinutesInput.value = "";
+    exerciseTimerExercisingSecondsInput.value = "";
+    exerciseTimerRestingMinutesInput.value = "";
+    exerciseTimerRestingSecondsInput.value = "";
+    startExerciseTimerButton.style.display = "inline";
+    exerciseTimerRevertInputsAndHideSpans();
     exerciseTimer = null;
 }
