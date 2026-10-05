@@ -76,9 +76,7 @@ function startExerciseTimer(){
             }else if(exercisingSeconds>0){
                 if(restingSeconds == 0 && exercisingSeconds == ((exercisingMinutesInput * 60) + exercisingSecondsInput)){
                     audio.play();
-                    alert("Timer done, time to exercise!");
-                    audio.pause();
-                    audio.currentTime = 1;
+                    timerModal.showModal();
                 }
                 getAndSetExerciseTimerSpanValues(exercisingSeconds, restingSeconds);
                 exercisingSeconds-=1;
@@ -87,16 +85,12 @@ function startExerciseTimer(){
                 exercisingSeconds = convertToSeconds(0, exercisingMinutesInput, exercisingSecondsInput);
                 restingSeconds = convertToSeconds(0, restingMinutesInput, restingSecondsInput);
                 audio.play();
-                alert("Exercise done, time to rest!");
-                audio.pause();
-                audio.currentTime = 1;
+                timerModal.showModal();
             }else{
                 clearInterval(exerciseTimer);
                 exerciseTimer = null;
                 audio.play();
-                alert("Timer done, time to exercise!");
-                audio.pause();
-                audio.currentTime = 1;
+                timerModal.showModal();
                 startExerciseTimerButton.style.display = "inline";
             }
         }, 1000);

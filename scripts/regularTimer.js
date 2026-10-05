@@ -58,7 +58,7 @@ function startRegularTimer(){
                 }else{
                     clearInterval(regularTimer);
                     audio.play();
-                    regularTimerModal.showModal();
+                    timerModal.showModal();
                     regularTimer = null;
                     regularTimerRevertInputsAndHideSpans();
                     startRegularTimerButton.style.display = "inline";

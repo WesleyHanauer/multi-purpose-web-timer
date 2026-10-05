@@ -10,6 +10,15 @@
     <title>Sedentary Timer</title>
 </head>
 <body class="bg-gradient-to-b from-gray-900 via-neutral-950 to-slate-900 bg-[length:400%_400%] animate-gradient min-h-screen text-white h-screen cursor-default">
+    <dialog id="timerModal" class="open:flex flex-col items-center justify-center bg-transparent backdrop:bg-black/60 backdrop:backdrop-blur-sm w-screen h-screen">
+        <div class="flex flex-col justify-center items-center bg-indigo-950 rounded-xl p-6 shadow-xl text-white">
+            <p class="text-xl font-bold mb-4">Timer done!</p>
+            <button id="closeTimerModal" class="px-4 py-2 text-sky-600 bg-white font-semibold rounded hover:bg-sky-100 transition">
+                Close
+            </button>
+        </div>
+    </dialog>
+
     <header class="fixed opacity-90 bg-indigo-950 flex w-full h-[8vh] items-center justify-center">
         <div class="absolute left-[4vw] flex space-x-2">
             <img class="max-h-[3vh] lg:max-w-[3vw]" src="./public/images/logo.png">
@@ -71,14 +80,6 @@
             <button id="resetRegularTimerButton" class="rounded bg-slate-600 px-2 w-[7vw]">
                 Reset timer
             </button>
-            <dialog id="regularTimerModal" class="open:flex flex-col items-center justify-center bg-transparent backdrop:bg-black/60 backdrop:backdrop-blur-sm w-screen h-screen">
-                <div class="flex flex-col justify-center items-center bg-indigo-950 rounded-xl p-6 shadow-xl text-white">
-                    <p class="text-xl font-bold mb-4">Timer done!</p>
-                    <button id="closeRegularTimerModal" class="px-4 py-2 text-sky-600 bg-white font-semibold rounded hover:bg-sky-100 transition">
-                        Close
-                    </button>
-                </div>
-            </dialog>
         </form>
 
         <form id="exerciseTimerForm" onsubmit="return false" class="flex flex-col items-center space-y-2">
