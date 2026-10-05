@@ -16,16 +16,18 @@ closeTimerModal.addEventListener("click", function(){
     audio.currentTime = 1;
 })
 
-startRegularTimerButton.addEventListener("click", function(){
+startRegularTimerButton.addEventListener("click", function(event){
     startRegularTimer();
+    event.preventDefault();
 });
 
 stopRegularTimerButton.addEventListener("click", function(){
     stopRegularTimer();
 });
 
-resetRegularTimerButton.addEventListener("click", function(){
+resetRegularTimerButton.addEventListener("click", function(event){
     resetRegularTimer();
+    event.preventDefault();
 });
 
 startExerciseTimerButton.addEventListener("click", function(){
@@ -39,7 +41,7 @@ resetExerciseTimerButton.addEventListener("click", function(){
 window.addEventListener("load", () => {
     regularTimerForm.reset();
     exerciseTimerForm.reset();
-    regularTimerForm.style.display = "none";
+    selectChange("regularTimer");
 });
 
 for(let i=0;i<tooltips.length;i++){

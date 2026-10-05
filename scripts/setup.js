@@ -6,8 +6,6 @@ const regularLabel = document.getElementById("regularLabel");
 var audio = new Audio('./public/audio/alarm.mp3');
 audio.currentTime = 1;
 
-regularTimerForm.style.display = "none";
-
 function selectChange(type){
     if (type == "regularTimer") {
         regularTimerForm.style.display = "flex";
@@ -16,10 +14,10 @@ function selectChange(type){
         exerciseLabel.classList.remove("bg-slate-600");
         
     } else if (type == "exerciseTimer") {
-        exerciseLabel.classList.add("bg-slate-600");
-        regularLabel.classList.remove("bg-slate-600");
         exerciseTimerForm.style.display = "flex";
         regularTimerForm.style.display = "none";
+        exerciseLabel.classList.add("bg-slate-600");
+        regularLabel.classList.remove("bg-slate-600");
     }
 }
 
